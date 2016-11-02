@@ -32,11 +32,32 @@ The log level and other trace options can be set through the Liberty configurati
 
 In the IBM Bluemix user interface, there are trace and dump capabilities.
 * Use Trace to view and update the Liberty logging traceSpecification on running application instances.
-* Use Dump to create and manipulate thread and heap dumps on running application instances.
+* Use Dump to create thread and heap dumps on running application instances.
 
 To do this action, select a Liberty application in the user interface. In the category Runtime in the navigation, you can open the instance details. Select an instance or multiple instances. In the Actions menu, you can choose TRACE or DUMP.
 
-Note that the logging and tracing facility is not available when the application was started using the "-b buildpack" option.
+## Download dump files
+{: #download_dumps}
+* In DEA, you can download dump files through following steps:
+```
+    $ cf app <yourappname> --guid
+      get app_guid
+    $ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dumpname> --output <dumpname>
+
+```
+* In Diego, you can access dump files through following steps
+```
+    $ cf app <yourappname> --guid
+      get app_guid
+    $ cf curl /v2/info
+      get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
+    $ cf ssh-code
+      get ssh-code for scp command
+    $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
+      when ask password, please input <ssh-code>
+```
+
+
 
 # rellinks
 {: #rellinks}
