@@ -38,25 +38,33 @@ To do this action, select a Liberty application in the user interface. In the ca
 
 ## Download dump files
 {: #download_dumps}
+
+* Prerequisite:
+ 1.  [Install CF CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+ 2. [Install Diego-Enabler plugin](https://github.com/cloudfoundry-incubator/Diego-Enabler) on Diego
+
 * In DEA, you can download dump files through following steps:
 ```
+    Step 1: get app_guid
     $ cf app <yourappname> --guid
-      get app_guid
+    Step 2: download dump file to local
     $ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dumpname> --output <dumpname>
 
 ```
 * In Diego, you can access dump files through following steps
 ```
+    Step 1: get app_guid
     $ cf app <yourappname> --guid
-      get app_guid
+    Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
     $ cf curl /v2/info
-      get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
+    Step 3: get ssh-code for scp command
     $ cf ssh-code
-      get ssh-code for scp command
+    Step 4: scp remote dump file to local
     $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
       when ask password, please input <ssh-code>
 ```
 
+Refer to [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) for more details
 
 
 # rellinks
@@ -65,3 +73,4 @@ To do this action, select a Liberty application in the user interface. In the ca
 {: #general}
 * [Liberty runtime](index.html)
 * [Liberty Profile Overview](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.wlp.nd.doc/ae/cwlp_about.html)
+
