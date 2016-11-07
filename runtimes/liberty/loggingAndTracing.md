@@ -40,7 +40,7 @@ To do this action, select a Liberty application in the user interface. In the ca
 {: #download_dumps}
 
 * Prerequisite:
- 1.  [Install CF CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+ 1. [Install CF CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
  2. [Install Diego-Enabler plugin](https://github.com/cloudfoundry-incubator/Diego-Enabler) on CF CLI for Diego
 
 * In DEA, you can download dump files through following steps:
