@@ -44,25 +44,33 @@ To do this action, select a Liberty application in the user interface. In the ca
  2. [Install Diego-Enabler plugin](https://github.com/cloudfoundry-incubator/Diego-Enabler) on CF CLI for Diego
 
 * In DEA, you can download dump files through following steps:
-```
     Step 1: get app_guid
-    $ cf app <yourappname> --guid
+```
+$ cf app <yourappname> --guid
+```
     Step 2: download dump file to local
-    $ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dumpname> --output <dumpname>
+```
+$ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dumpname> --output <dumpname>
 
 ```
 * In Diego, you can access dump files through following steps
-```
     Step 1: get app_guid
-    $ cf app <yourappname> --guid
-    Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
-    $ cf curl /v2/info
-    Step 3: get ssh-code for scp command
-    $ cf ssh-code
-    Step 4: scp remote dump file to local
-    $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
-      when ask password, please input <ssh-code>
 ```
+$ cf app <yourappname> --guid
+```
+    Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
+```
+$ cf curl /v2/info
+```
+    Step 3: get ssh-code for scp command
+```
+$ cf ssh-code
+```
+    Step 4: scp remote dump file to local
+```
+$ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
+```
+    when ask password, please input <ssh-code>
 
 Refer to [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) for more details
 
