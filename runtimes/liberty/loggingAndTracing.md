@@ -75,13 +75,12 @@ To do this action, select a Liberty application in the user interface. In the ca
     $ cf ssh-code
     ```
 
-    Step 4: scp remote dump file to local
+    Step 4: scp remote dump file to local, when ask password, please input ssh-code
 
     ```
     $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
     ```
 
-    when ask password, please input <ssh-code>
 
     Refer to [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) for more details
 
