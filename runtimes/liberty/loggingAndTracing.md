@@ -41,29 +41,29 @@ To do this action, select a Liberty application in the user interface. In the ca
 
   * Prerequisite:
     1. [Install CF CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
-    2. [Install Diego-Enabler plugin](https://github.com/cloudfoundry-incubator/Diego-Enabler) on CF CLI for Diego
+    2. [Install Diego-Enabler plugin](https://github.com/cloudfoundry-incubator/Diego-Enabler) if your application runs in Diego
 
-  * In DEA, you can download dump files through following steps:
+  * If your application runs in DEA, use the following steps:
   
     Step 1: get app_guid
     ```
-    $ cf app <yourappname> --guid
+    $ cf app <app_name> --guid
     ```
 
-    Step 2: download dump file to local
+    Step 2: download dump file
 
     ```
-    $ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dumpname> --output <dumpname>
+    $ cf curl /v2/apps/<app_guid>/instances/<instance_id>/files/dumps/<dump_file_name> --output <local_dump_file_name>
     ```
 
-  * In Diego, you can access dump files through following steps
+  * If your application runs in Diego, use the following steps
   
     Step 1: get app_guid
     ```
-    $ cf app <yourappname> --guid
+    $ cf app <app_name> --guid
     ```
 
-    Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
+    Step 2: get app_ssh_endpoint(host and port) and app_ssh_host_key_fingerprint
 
     ```
     $ cf curl /v2/info
@@ -75,10 +75,10 @@ To do this action, select a Liberty application in the user interface. In the ca
     $ cf ssh-code
     ```
 
-    Step 4: scp remote dump file to local, when ask password, please input ssh-code
+    Step 4: scp remote dump file to local, use ssh-code when prompted for a password
 
     ```
-    $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
+    $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file_name> <local_dump_file_name>
     ```
 
 
