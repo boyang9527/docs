@@ -63,27 +63,27 @@ To do this action, select a Liberty application in the user interface. In the ca
     $ cf app <yourappname> --guid
     ```
 
-		Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
+    Step 2: get app_ssh_endpoint(host:port) and app_ssh_host_key_fingerprint
 
-		```
-		$ cf curl /v2/info
-		```
+    ```
+    $ cf curl /v2/info
+    ```
 
-		Step 3: get ssh-code for scp command
+    Step 3: get ssh-code for scp command
 
-		```
-		$ cf ssh-code
-		```
+    ```
+    $ cf ssh-code
+    ```
 
-		Step 4: scp remote dump file to local
-		
-		```
-		$ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
-		```
+    Step 4: scp remote dump file to local
 
-		when ask password, please input <ssh-code>
+    ```
+    $ scp -P <app_ssh_endpoint_port> -o User=cf:<app_guid>/<instance_id> <app_ssh_endpoint_host>:/home/vcap/dumps/<dump_file> <local_file_name>
+    ```
 
-	Refer to [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) for more details
+    when ask password, please input <ssh-code>
+
+    Refer to [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) for more details
 
 
 # rellinks
